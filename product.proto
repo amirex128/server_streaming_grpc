@@ -1,0 +1,18 @@
+syntax = "proto3";
+package rpc;
+option go_package = "/rpc";
+
+message Product{
+  string name = 1;
+  uint32 price = 2;
+}
+message ProductRequest{
+  uint32 product_id = 1;
+}
+message ProductResponse{
+  Product product = 1;
+}
+
+service ParsGoService{
+  rpc ReceiveProduct(ProductRequest) returns (stream ProductResponse){};
+}
